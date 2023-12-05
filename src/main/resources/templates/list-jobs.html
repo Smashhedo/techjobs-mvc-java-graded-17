@@ -13,6 +13,7 @@
   <!-- TODO #1 - Use a loop to display job results in a table. -->
 
   <ol>
+
     <table class="job-listing" th:each="job : ${jobs}">
       <tr>
         <td>ID</td>
@@ -25,6 +26,10 @@
       <tr>
         <td>Employer</td>
         <td th:text = "${job.employer}"></td>
+      </tr>
+      <tr>
+        <td>Location</td>
+        <td th:text = "${job.location}"></td>
       </tr>
       <tr>
         <td>Position Type</td>
