@@ -4,8 +4,10 @@ import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 import org.launchcode.techjobsmvc.NameSorter;
+import org.launchcode.techjobsmvc.controllers.SearchController;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -52,6 +54,8 @@ public class JobData {
      * @param value Value of the field to search for.
      * @return List of all jobs matching the criteria.
      */
+
+
     public static ArrayList<Job> findByColumnAndValue(String column, String value) {
 
         // load data, if not already loaded
@@ -101,6 +105,7 @@ public class JobData {
      * @param value The search term to look for.
      * @return      List of all jobs with at least one field containing the value.
      */
+
     public static ArrayList<Job> findByValue(String value) {
 
         // load data, if not already loaded
