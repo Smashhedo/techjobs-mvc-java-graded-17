@@ -1,5 +1,6 @@
 package org.launchcode.techjobsmvc.controllers;
 
+import jdk.jfr.Event;
 import org.launchcode.techjobsmvc.models.Job;
 import org.launchcode.techjobsmvc.models.JobData;
 import org.springframework.core.annotation.MergedAnnotations;
@@ -27,24 +28,27 @@ public class SearchController {
 
     private static List<Job> searchResults = new ArrayList<>();
 
-    @GetMapping(value = "")
+    @GetMapping (value = "")
     public String search(Model model) {
         model.addAttribute("columns", columnChoices);
         return "search";
     }
 
     // TODO #3 - Create a handler to process a search request and render the updated search view.
-    @GetMapping ("/results")
+    @PostMapping ("/search/results")
     public String displaySearchResults(Model model, @RequestParam String searchTerm, @RequestParam String searchType) {
         searchResults = JobData.findByColumnAndValue(searchTerm, searchType);
 
         model.addAttribute("searchTerm", searchTerm);
         model.addAttribute("searchResults", searchResults);
+        model.addAttribute("jobs");
+        model.addAttribute(ListController.columnChoices);
+
 
         if ((searchTerm == "all".toLowerCase()) || searchTerm == "") {
-            return String.valueOf(JobData.findAll());
+            String.valueOf(JobData.findAll());
         } else {
-            return String.valueOf(searchResults);
+            String.valueOf(searchResults);
         }
        return "redirect:/search/results";
     }
