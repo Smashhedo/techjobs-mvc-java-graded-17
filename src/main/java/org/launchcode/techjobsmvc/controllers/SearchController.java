@@ -23,7 +23,6 @@ import static org.launchcode.techjobsmvc.controllers.ListController.columnChoice
 @RequestMapping("search")
 public class SearchController {
 
-    private static List<Job> searchResults = new ArrayList<>();
 
     @GetMapping (value = "")
     public String search(Model model) {
@@ -32,22 +31,21 @@ public class SearchController {
     }
 
     // TODO #3 - Create a handler to process a search request and render the updated search view.
-    @PostMapping (value = "/search/results")
-    @ResponseBody
+    @PostMapping ("/results")
     public String displaySearchResults(Model model, @RequestParam String searchType, @RequestParam String searchTerm) {
-
-        searchResults = JobData.findByColumnAndValue(searchType, searchTerm);
+        List<Job> searchResults;
+        if ((searchTerm == "all".toLowerCase()) || searchTerm == "") {
+            searchResults = JobData.findAll();
+        } else {
+            searchResults = JobData.findByColumnAndValue(searchType, searchTerm);
+        }
 
         model.addAttribute("searchType", searchType);
         model.addAttribute("searchTerm", searchTerm);
-        //model.addAttribute("searchResults", searchResults);
+        model.addAttribute("searchResults", searchResults);
 
-        if ((searchTerm == "all".toLowerCase()) || searchTerm == "") {
-            String.valueOf(JobData.findAll());
-        } else {
-            String.valueOf(searchResults);
-        }
-       return "redirect:/search/results";
+
+       return "search";
     }
 }
 
