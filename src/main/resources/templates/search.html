@@ -40,7 +40,7 @@
 
   <!-- TODO #4 - Loop over the search results to display all job fields. -->
 
-    <table th:replace="~{list-jobs :: jobLoop}" th:each="searchResults">
+    <table th:replace="~{list-jobs :: jobLoop}" th:each="job : ${jobs}">
     </table>
 
 </div>
