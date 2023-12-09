@@ -13,10 +13,7 @@
 
   <!-- TODO #1 - Use a loop to display job results in a table. -->
 
-  <ol th:fragment="jobLoop">
-    <form th:action="@{/list-jobs}" method = "post">
-    <li class="job-listing" th:each="job : ${jobs}">
-      <table>
+      <table  th:fragment="jobLoop" class="job-listing" th:each="job : ${jobs}">
       <tr>
         <td>ID</td>
         <td th:text = "${job.id}"></td>
@@ -42,9 +39,6 @@
         <td th:text = "${job.coreCompetency}"></td>
       </tr>
       </table>
-    </li>
-    </form>
-  </ol>
 
 </div>
 </body>

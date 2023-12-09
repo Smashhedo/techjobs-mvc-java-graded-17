@@ -29,7 +29,7 @@ public class ListController {
         columnChoices.put("positionType", "Position Type");
         columnChoices.put("coreCompetency", "Skill");
 
-        tableChoices.put("all", JobData.findAll());
+        tableChoices.put("all", "View All");
         tableChoices.put("employer", JobData.getAllEmployers());
         tableChoices.put("location", JobData.getAllLocations());
         tableChoices.put("positionType", JobData.getAllPositionTypes());
@@ -48,7 +48,7 @@ public class ListController {
         return "list";
     }
 
-    @PostMapping (value = "jobs")
+    @GetMapping (value = "jobs")
     public String listJobsByColumnAndValue(Model model, @RequestParam String column, @RequestParam(required = false) String value) {
         ArrayList<Job> jobs;
         if (column.equals("all")){
@@ -62,5 +62,6 @@ public class ListController {
 
         return "list-jobs";
     }
+
 }
 

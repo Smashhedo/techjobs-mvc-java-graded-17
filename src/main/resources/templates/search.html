@@ -40,8 +40,9 @@
 
   <!-- TODO #4 - Loop over the search results to display all job fields. -->
 
-   <ol th:replace="list-jobs :: jobLoop"></ol>
-<!--    <li th:src = "@{/SearchController}"></li>-->
+    <table th:replace="~{list-jobs :: jobLoop}" th:each="searchResults">
+    </table>
+
 </div>
 </body>
 </html>
